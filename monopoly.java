@@ -93,7 +93,14 @@ public class monopoly {
         currentPlayer.depositMoney(startingMoney);
         players.add(currentPlayer);
     }
-    for (int x=0;x<players.size();x++)
+
+    for (int x=0;x<players.size();x++){
+        System.out.println(players.get(x).getName()+ " is player number "+(x+1));
+    }
+    boolean keepGoing=true;
+    while (keepGoing){
+    currentPlayer=players.get(0);
+    for (int x=0;x<players.size();x++){
     currentPlayer=players.get(x);
     diceRoll=rollDice(12);
     System.out.println(currentPlayer.getName()+" you rolled "+ diceRoll);
@@ -109,8 +116,18 @@ public class monopoly {
         }
         }
     }
+    if (currentProperty.getOwner()!=null){
     System.out.println("You need to pay " + currentProperty.getRent()+" to "+ currentProperty.getOwner().getName());
     currentPlayer.spentMoney(currentProperty.getRent());
     currentProperty.getOwner().depositMoney(currentProperty.getRent());
+    }
 }
+        }
+        System.out.println("Do you want to go another round?");
+         userImput= imput.nextLine();
+        if (userImput.contains("Y") || userImput.contains("y")){
+            keepGoing=true;
+        }else keepGoing=false;
+
+    }
 }
